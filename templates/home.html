@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict Student Marks</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #36d1dc, #5b86e5);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: rgba(255,255,255,0.1);
+            padding: 40px 50px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            color: #fff;
+            width: 400px;
+        }
+
+        .container h1 {
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        input, select {
+            width: 80%;
+            padding: 10px 12px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+        }
+
+        button {
+            padding: 12px 30px;
+            margin-top: 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            background-color: #fff;
+            color: #5b86e5;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #5b86e5;
+            color: #fff;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Student Marks Prediction</h1>
+        <form action="{{ url_for('predict_data') }}" method="post">
+            <input type="text" name="gender" placeholder="Gender" required><br>
+            <input type="text" name="ethnicity" placeholder="Race/Ethnicity" required><br>
+            <input type="text" name="parental_level_of_education" placeholder="Parental Level of Education" required><br>
+            <input type="text" name="lunch" placeholder="Lunch" required><br>
+            <input type="text" name="test_preparation_course" placeholder="Test Preparation Course" required><br>
+            <input type="number" name="reading_score" placeholder="Reading Score" required><br>
+            <input type="number" name="writing_score" placeholder="Writing Score" required><br>
+            <button type="submit">Predict Marks</button>
+        </form>
+
+        {% if results %}
+        <div class="result">
+            Predicted Marks: {{ results }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
